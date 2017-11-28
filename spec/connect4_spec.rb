@@ -5,7 +5,7 @@ describe Connect4 do
 
   describe "#initialize" do
     it "sets board" do
-      empty_board = Hash[(1..42).map{ |x| [x, "."] }]
+      empty_board = Hash[(1..7).map{ |x| [x, [".", ".", ".", ".", ".", "."]] }]
       expect(game.board).to eq(empty_board)
     end
   end

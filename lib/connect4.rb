@@ -2,17 +2,14 @@ class Connect4
   attr_accessor :board
 
   def initialize()
-    rules
-    @board = Hash[(1..42).map{ |x| [x, "."] }]
-    styling
+    @board = Hash[(1..7).map{ |x| [x, [".", ".", ".", ".", ".", "."]] }]
   end
 
   def rules
-    puts "Welcome to Connect Four game!"
-    puts "Each player should play by turns"
-    puts "and enter a number between 1-7 as the vertical line of your move e.g. 3"
-    puts "The move will be placed on top of that vertical line."
-    puts ""
+    "Welcome to Connect Four game!\n" +
+    "Each player should play by turns\n" +
+    "and enter a number between 1-7 as the vertical line of your move e.g. 3\n" +
+    "The move will be placed on top of that vertical line.\n"
   end
 
   def visualise
@@ -36,7 +33,20 @@ class Connect4
     coord
   end
 
-  def colocate_the_coord
+  def colocate_the_coord(player)
+    coord = get_the_coord
+    horizontal_idx = @board[coord].index(".")
+    # @board[coord][horizontal_idx] = player
+
+  end
+
+  def save_into_board(coord, idx)
+    # @board[coord][horizontal_idx] = player
+  end
+
+  def check_if_free(horizontal_idx)
+    # check if idx == nil
+    # check if [coord]idx != "."
   end
 
   def a_winner?
@@ -45,6 +55,10 @@ class Connect4
 end
 
 if __FILE__ == $0
-  game = TicTacToe.new()
+  game = Connect4.new()
   #main logic goes here.
 end
+
+
+
+
