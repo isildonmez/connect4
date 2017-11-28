@@ -10,4 +10,17 @@ describe Connect4 do
     end
   end
 
+  # TODO invalid coord
+  describe "#check_the_coord" do
+    before do
+      fake_obj = double
+      expect(game).to receive(:gets).and_return(fake_obj)
+      expect(fake_obj).to receive(:chomp).and_return("3")
+    end
+
+    it "returns 3" do
+      expect(game.check_the_coord).to eq(3)
+    end
+  end
+
 end
