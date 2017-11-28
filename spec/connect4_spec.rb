@@ -30,4 +30,21 @@ describe Connect4 do
     end
   end
 
+  describe "#check_if_free" do
+    context "if not free space" do
+      it "returns false" do
+        game.board[2] = [:p1, :p2, :p2, :p2, :p1, :p2]
+        expect(game.check_if_free(2, :p1)).to eq(false)
+      end
+    end
+
+    context "if free space" do
+      it "sets board and returns true" do
+        game.board[2] = [:p1, :p2, :p2, :p2, ".", "."]
+        expect(game.check_if_free(2, :p1)).to eq(true)
+        expect(game.board[2][4]).to eq(:p1)
+      end
+    end
+  end
+
 end

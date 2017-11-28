@@ -12,8 +12,18 @@ class Connect4
     "The move will be placed on top of that vertical line.\n"
   end
 
-  def check_the_coord(coord) # coord, true/false
+  def check_the_coord(coord)
     coord.between?(1,7) ? true : false
+  end
+
+  def check_if_free(coord, player) # true => save into board return true; false: gets.chomp
+    horizontal_idx = @board[coord].index(".")
+    if horizontal_idx
+      @board[coord][horizontal_idx] = player
+    else
+      return false
+    end
+    true
   end
 
   # def visualise
@@ -22,32 +32,29 @@ class Connect4
   # def styling
   # end
 
-  # def colocate_the_coord(player)
-  #   coord = get_the_coord
-  #   horizontal_idx = @board[coord].index(".")
-  #   # @board[coord][horizontal_idx] = player
-
-  # end
-
-  def check_if_free(horizontal_idx)
-    # check if idx == nil
-    # check if [coord]idx != "."
-  end
-
   def a_winner?
   end
 
 end
 
 if __FILE__ == $0
+  #main logic goes here.
   game = Connect4.new()
   puts rules
-  coord = gets.chomp.to_i
-  until check_the_coord(coord)
-    puts "Please enter a number between 1-7"
+  until (turn > 42) || a_winner?
+    player = turn.odd? ? :p1 : :p2
     coord = gets.chomp.to_i
+    until check_the_coord(coord)
+      puts "Please enter a number between 1-7"
+      coord = gets.chomp.to_i
+    end
+    until check_if_free(coord, player)
+      puts "Please enter another number between 1-7"
+      coord = gets.chomp.to_i
+    end
+
+    turn += 1
   end
-  #main logic goes here.
 end
 
 
