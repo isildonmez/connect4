@@ -10,6 +10,12 @@ describe Connect4 do
     end
   end
 
+  describe "#rules" do
+    it "returns String" do
+      expect(game.rules).to be_is_a(String)
+    end
+  end
+
   # TODO invalid coord
   describe "#check_the_coord" do
     before do
