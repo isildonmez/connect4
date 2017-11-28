@@ -26,8 +26,16 @@ class Connect4
     true
   end
 
+  # TODO styling
   def visual
-    @board.values.map{ |arr| arr.join("  ")}.join("\n")
+    verticals = @board.values
+    horizontals = verticals[0].zip(verticals[1],
+                                  verticals[2],
+                                  verticals[3],
+                                  verticals[4],
+                                  verticals[5],
+                                  verticals[6]).reverse
+    horizontals.map{ |arr| arr.join("  ")}.join("\n")
   end
 
   def a_winner?
@@ -51,7 +59,7 @@ if __FILE__ == $0
       puts "Please enter another number between 0-6"
       coord = gets.chomp.to_i
     end
-
+    puts visual
     turn += 1
   end
 end

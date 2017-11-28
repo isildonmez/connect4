@@ -51,13 +51,12 @@ describe Connect4 do
     it "returns a string to visualise" do
       game.board[0] = ["x", "o", "o", "o", ".", "."]
       game.board[5] = [".", "o", ".", "x", "o", "."]
-      current_board = "x  o  o  o  .  .\n" +
-                      ".  .  .  .  .  .\n" +
-                      ".  .  .  .  .  .\n" +
-                      ".  .  .  .  .  .\n" +
-                      ".  .  .  .  .  .\n" +
-                      ".  o  .  x  o  .\n" +
-                      ".  .  .  .  .  ."
+      current_board = ".  .  .  .  .  .  .\n" +
+                      ".  .  .  .  .  o  .\n" +
+                      "o  .  .  .  .  x  .\n" +
+                      "o  .  .  .  .  .  .\n" +
+                      "o  .  .  .  .  o  .\n" +
+                      "x  .  .  .  .  .  ."
       expect(game.visual).to eq(current_board)
     end
   end
