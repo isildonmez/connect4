@@ -26,7 +26,6 @@ class Connect4
     true
   end
 
-  # TODO styling
   def visual
     verticals = @board.values
     horizontals = verticals[0].zip(verticals[1],
@@ -35,9 +34,16 @@ class Connect4
                                   verticals[4],
                                   verticals[5],
                                   verticals[6]).reverse
-    horizontals.map{ |arr| arr.join("  ")}.join("\n")
+
+    string_to_visualise = horizontals.map{ |arr| arr.join("  ")}.join("\n")
   end
 
+  def style
+    styling = visual
+    styling.gsub("x", "\u263B").gsub("o", "\u263A")
+  end
+
+  # TODO fix the method
   def a_winner?(player)
     # vertical 5-in-a-row
     @board.each_value do |vertical|
@@ -83,27 +89,27 @@ class Connect4
 end
 
 if __FILE__ == $0
-  #main logic goes here.
   game = Connect4.new()
-  puts rules
-  puts visual
+  puts game.rules
+  puts game.visual
   gameover = false
   turn = 1
   until (turn > 42) && gameover
     player = turn.odd? ? "x" : "o"
     coord = gets.chomp.to_i
-    until check_the_coord(coord)
+    until game.check_the_coord(coord)
       puts "Please enter a number between 0-6"
       coord = gets.chomp.to_i
     end
-    until check_if_free(coord, player)
+    until game.check_if_free(coord, player)
       puts "Please enter another number between 0-6"
       coord = gets.chomp.to_i
     end
-    puts visual
-    gameover = true if a_winner?(player)
+    puts game.style
+    gameover = true if game.a_winner?(player)
     turn += 1
   end
+  puts "Game is over"
 end
 
 
