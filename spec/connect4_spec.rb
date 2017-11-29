@@ -61,6 +61,19 @@ describe Connect4 do
     end
   end
 
+  describe "#style" do
+    it "changes x and o's with unicodes" do
+      game.board[0] = ["x", "o", ".", ".", ".", "."]
+      current_board = ".  .  .  .  .  .  .\n" +
+                      ".  .  .  .  .  .  .\n" +
+                      ".  .  .  .  .  .  .\n" +
+                      ".  .  .  .  .  .  .\n" +
+                      "\u263A  .  .  .  .  .  .\n" +
+                      "\u263B  .  .  .  .  .  ."
+      expect(game.style).to eq(current_board)
+    end
+  end
+
   # TODO returns true tests.
   describe "#a_winner" do
     context "when vertical 5-in-a-row" do
