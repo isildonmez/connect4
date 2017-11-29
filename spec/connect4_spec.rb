@@ -99,11 +99,11 @@ describe Connect4 do
 
     context "when forward diagonal 5-in-a-row" do
       it "returns true" do
-        game.board[0][1] = "o"
-        game.board[1][2] = "o"
-        game.board[2][3] = "o"
-        game.board[3][4] = "o"
-        game.board[4][5] = "o"
+        game.board[2][0] = "o"
+        game.board[3][1] = "o"
+        game.board[4][2] = "o"
+        game.board[5][3] = "o"
+        game.board[6][4] = "o"
         expect(game.a_winner?("o")).to eq(true)
       end
     end

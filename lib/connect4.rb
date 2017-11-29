@@ -93,7 +93,7 @@ if __FILE__ == $0
   puts game.visual
   gameover = false
   turn = 1
-  until (turn > 42) && gameover
+  until (turn > 42) || gameover
     player = turn.odd? ? "x" : "o"
     coord = gets.chomp.to_i
     until game.check_the_coord(coord)
