@@ -74,7 +74,6 @@ describe Connect4 do
     end
   end
 
-  # TODO returns true tests.
   describe "#a_winner" do
     context "when vertical 5-in-a-row" do
       it "returns true" do

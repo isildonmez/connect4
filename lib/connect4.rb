@@ -43,14 +43,13 @@ class Connect4
     styling.gsub("x", "\u263B").gsub("o", "\u263A")
   end
 
-  # TODO fix the method
   def a_winner?(player)
     # vertical 5-in-a-row
     @board.each_value do |vertical|
       for i in 0..1
         return true if [vertical[i], vertical[i+1],
                         vertical[i+2], vertical[i+3],
-                        vertical[i+4]].uniq == player
+                        vertical[i+4]].uniq == [player]
       end
     end
 
@@ -59,7 +58,7 @@ class Connect4
       for j in 0..2
         return true if [@board[j][i], @board[j+1][i],
                         @board[j+2][i], @board[j+3][i],
-                        @board[j+4][i]].uniq == player
+                        @board[j+4][i]].uniq == [player]
       end
     end
 
@@ -68,7 +67,7 @@ class Connect4
       for j in 0..1
         return true if [@board[i][j], @board[i+1][j+1],
                         @board[i+2][j+2], @board[i+3][j+3],
-                        @board[i+4][j+4]].uniq == player
+                        @board[i+4][j+4]].uniq == [player]
       end
     end
 
@@ -79,7 +78,7 @@ class Connect4
         for k in 0..4
           each_diagonal << @board[i-(j-k)][j-k]
         end
-        return true if each_diagonal.uniq == player
+        return true if each_diagonal.uniq == [player]
       end
     end
 
