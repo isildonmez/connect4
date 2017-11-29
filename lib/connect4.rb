@@ -38,7 +38,6 @@ class Connect4
     horizontals.map{ |arr| arr.join("  ")}.join("\n")
   end
 
-  # TODO horizontal and diagonal * 2
   def a_winner?(player)
     # vertical 5-in-a-row
     @board.each_value do |vertical|

@@ -61,6 +61,84 @@ describe Connect4 do
     end
   end
 
+  # TODO returns true tests.
+  describe "#a_winner" do
+    context "when vertical 5-in-a-row" do
+      it "returns true" do
+        game.board[3][5] = "x"
+        game.board[3][4] = "x"
+        game.board[3][3] = "x"
+        game.board[3][2] = "x"
+        game.board[3][1] = "x"
+        expect(game.a_winner?("x")).to eq(true)
+      end
+    end
+
+    context "when horizontal 5-in-a-row" do
+      it "returns true" do
+        game.board[0][2] = "o"
+        game.board[1][2] = "o"
+        game.board[2][2] = "o"
+        game.board[3][2] = "o"
+        game.board[4][2] = "o"
+        expect(game.a_winner?("o")).to eq(true)
+      end
+    end
+
+    context "when forward diagonal 5-in-a-row" do
+      it "returns true" do
+        game.board[0][1] = "o"
+        game.board[1][2] = "o"
+        game.board[2][3] = "o"
+        game.board[3][4] = "o"
+        game.board[4][5] = "o"
+        expect(game.a_winner?("o")).to eq(true)
+      end
+    end
+
+    context "when backward diagonal 5-in-a-row" do
+      it "returns true" do
+        game.board[1][5] = "x"
+        game.board[2][4] = "x"
+        game.board[3][3] = "x"
+        game.board[4][2] = "x"
+        game.board[5][1] = "x"
+        expect(game.a_winner?("x")).to eq(true)
+      end
+    end
+
+    context "without 5-in-a-row" do
+      it "returns false" do
+        game.board[3][5] = "x"
+        game.board[3][4] = "x"
+        game.board[3][3] = "x"
+        game.board[3][2] = "x"
+        game.board[3][1] = "o"
+        game.board[3][0] = "x"
+        expect(game.a_winner?("x")).to eq(false)
+      end
+
+      it "returns false" do
+        game.board[0][2] = "o"
+        game.board[1][2] = "x"
+        game.board[2][2] = "o"
+        game.board[3][2] = "o"
+        game.board[4][2] = "o"
+        game.board[5][2] = "o"
+        expect(game.a_winner?("o")).to eq(false)
+      end
+
+      it "returns false" do
+        game.board[1][5] = "."
+        game.board[2][4] = "x"
+        game.board[3][3] = "x"
+        game.board[4][2] = "x"
+        game.board[5][1] = "x"
+        expect(game.a_winner?("x")).to eq(false)
+      end
+    end
+  end
+
 
 
 end
