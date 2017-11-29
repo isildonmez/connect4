@@ -38,7 +38,47 @@ class Connect4
     horizontals.map{ |arr| arr.join("  ")}.join("\n")
   end
 
-  def a_winner?
+  # TODO horizontal and diagonal * 2
+  def a_winner?(player)
+    # vertical 5-in-a-row
+    @board.each_value do |vertical|
+      for i in 0..1
+        return true if [vertical[i], vertical[i+1],
+                        vertical[i+2], vertical[i+3],
+                        vertical[i+4]].uniq == player
+      end
+    end
+
+    # horizontal 5-in-a-row
+    for i in 0..5
+      for j in 0..2
+        return true if [@board[j][i], @board[j+1][i],
+                        @board[j+2][i], @board[j+3][i],
+                        @board[j+4][i]].uniq == player
+      end
+    end
+
+    # forward diagonal 5-in-a-row
+    for i in 0..2
+      for j in 0..1
+        return true if [@board[i][j], @board[i+1][j+1],
+                        @board[i+2][j+2], @board[i+3][j+3],
+                        @board[i+4][j+4]].uniq == player
+      end
+    end
+
+    # backward diagonal 5-in-a-row
+    for i in 5..6
+      for j in 4..5
+        each_diagonal = []
+        for k in 0..4
+          each_diagonal << @board[i-(j-k)][j-k]
+        end
+        return true if each_diagonal.uniq == player
+      end
+    end
+
+    false
   end
 
 end
@@ -48,7 +88,9 @@ if __FILE__ == $0
   game = Connect4.new()
   puts rules
   puts visual
-  until (turn > 42) || a_winner?
+  gameover = false
+  turn = 1
+  until (turn > 42) && gameover
     player = turn.odd? ? "x" : "o"
     coord = gets.chomp.to_i
     until check_the_coord(coord)
@@ -60,6 +102,7 @@ if __FILE__ == $0
       coord = gets.chomp.to_i
     end
     puts visual
+    gameover = true if a_winner?(player)
     turn += 1
   end
 end
