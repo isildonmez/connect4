@@ -77,14 +77,14 @@ class Connect4
       end
     end
 
-    # backward diagonal 5-in-a-row
-    for i in 5..6
-      for j in 4..5
-        each_diagonal = []
-        for k in 0..4
-          each_diagonal << @board[i-(j-k)][j-k]
+    # backward diagonal 4-in-a-row
+    for i in 0..3
+      for j in (5).downto(3)
+        bw_diagonal = []
+        for k in 0..3
+          bw_diagonal << @board[i+k][j-k]
         end
-        return true if each_diagonal.uniq == [player]
+        return true if bw_diagonal.uniq == [player]
       end
     end
 

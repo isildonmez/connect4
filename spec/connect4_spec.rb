@@ -105,9 +105,8 @@ describe Connect4 do
       end
     end
 
-    context "when backward diagonal 5-in-a-row" do
+    context "when backward diagonal 4-in-a-row" do
       it "returns true" do
-        game.board[1][5] = "x"
         game.board[2][4] = "x"
         game.board[3][3] = "x"
         game.board[4][2] = "x"
@@ -145,8 +144,7 @@ describe Connect4 do
       end
 
       it "returns false" do
-        game.board[1][5] = "."
-        game.board[2][4] = "x"
+        game.board[2][4] = "."
         game.board[3][3] = "x"
         game.board[4][2] = "x"
         game.board[5][1] = "x"
