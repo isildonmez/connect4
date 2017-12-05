@@ -85,9 +85,8 @@ describe Connect4 do
       end
     end
 
-    context "when horizontal 5-in-a-row" do
+    context "when horizontal 4-in-a-row" do
       it "returns true" do
-        game.board[0][2] = "o"
         game.board[1][2] = "o"
         game.board[2][2] = "o"
         game.board[3][2] = "o"
@@ -130,8 +129,8 @@ describe Connect4 do
 
       it "returns false" do
         game.board[0][2] = "o"
-        game.board[1][2] = "x"
-        game.board[2][2] = "o"
+        game.board[1][2] = "o"
+        game.board[2][2] = "x"
         game.board[3][2] = "o"
         game.board[4][2] = "o"
         game.board[5][2] = "o"

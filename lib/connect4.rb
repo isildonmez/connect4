@@ -55,12 +55,14 @@ class Connect4
       end
     end
 
-    # horizontal 5-in-a-row
+    # horizontal 4-in-a-row
     for i in 0..5
       for j in 0..2
-        return true if [@board[j][i], @board[j+1][i],
-                        @board[j+2][i], @board[j+3][i],
-                        @board[j+4][i]].uniq == [player]
+        each_horizontal = []
+        for k in 0..3
+          each_horizontal << @board[j+k][i]
+        end
+        return true if each_horizontal.uniq == [player]
       end
     end
 
