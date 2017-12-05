@@ -57,7 +57,7 @@ class Connect4
 
     # horizontal 4-in-a-row
     for i in 0..5
-      for j in 0..2
+      for j in 0..3
         each_horizontal = []
         for k in 0..3
           each_horizontal << @board[j+k][i]
@@ -66,12 +66,14 @@ class Connect4
       end
     end
 
-    # forward diagonal 5-in-a-row
-    for i in 0..2
-      for j in 0..1
-        return true if [@board[i][j], @board[i+1][j+1],
-                        @board[i+2][j+2], @board[i+3][j+3],
-                        @board[i+4][j+4]].uniq == [player]
+    # forward diagonal 4-in-a-row
+    for i in 0..3
+      for j in 0..2
+        fw_diagonal = []
+        for k in 0..3
+          fw_diagonal << @board[i+k][j+k]
+        end
+        return true if fw_diagonal.uniq == [player]
       end
     end
 
