@@ -75,13 +75,12 @@ describe Connect4 do
   end
 
   describe "#a_winner" do
-    context "when vertical 5-in-a-row" do
+    context "when vertical 4-in-a-row" do
       it "returns true" do
         game.board[3][5] = "x"
         game.board[3][4] = "x"
         game.board[3][3] = "x"
         game.board[3][2] = "x"
-        game.board[3][1] = "x"
         expect(game.a_winner?("x")).to eq(true)
       end
     end
@@ -119,14 +118,13 @@ describe Connect4 do
       end
     end
 
-    context "without 5-in-a-row" do
+    context "without 4-in-a-row" do
       it "returns false" do
         game.board[3][5] = "x"
         game.board[3][4] = "x"
         game.board[3][3] = "x"
-        game.board[3][2] = "x"
-        game.board[3][1] = "o"
-        game.board[3][0] = "x"
+        game.board[3][2] = "o"
+        game.board[3][1] = "x"
         expect(game.a_winner?("x")).to eq(false)
       end
 

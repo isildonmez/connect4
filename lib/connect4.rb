@@ -44,12 +44,14 @@ class Connect4
   end
 
   def a_winner?(player)
-    # vertical 5-in-a-row
-    @board.each_value do |vertical|
-      for i in 0..1
-        return true if [vertical[i], vertical[i+1],
-                        vertical[i+2], vertical[i+3],
-                        vertical[i+4]].uniq == [player]
+    # vertical 4-in-a-row
+    for i in 0..6
+      for j in 0..2
+        each_vertical = []
+        for k in 0..3
+          each_vertical << @board[i][j+k]
+        end
+        return true if each_vertical.uniq == [player]
       end
     end
 
